@@ -1,7 +1,6 @@
 # Cinematic Hero (Standalone React)
 
-Plain React + Vite version of the cinematic hero. No Tailwind, no TanStack —
-just `.html`, `.jsx`, and `.css`.
+
 
 ## Run
 
