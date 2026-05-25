@@ -1,0 +1,164 @@
+:root {
+  --bg: #18121f;
+  --fg: #f7f1e1;
+  --font-display: "Viaoda Libre", serif;
+  --font-body: "Imprima", sans-serif;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+.app { background: var(--bg); color: var(--fg); }
+
+.gpu {
+  transform: translateZ(0);
+  will-change: transform, opacity;
+  backface-visibility: hidden;
+}
+
+/* ===== Hero ===== */
+.hero-scope { position: relative; height: 500vh; }
+
+.hero-stage {
+  position: relative;
+  height: 100vh;
+  width: 100%;
+  overflow: hidden;
+  background: var(--bg);
+}
+
+.bg-layer { position: absolute; inset: 0; }
+.bg-layer img { height: 100%; width: 100%; object-fit: cover; display: block; }
+.bg-gradient {
+  position: absolute; inset: 0;
+  background: linear-gradient(180deg, rgba(245,238,224,0.18) 0%, rgba(232,220,200,0.10) 40%, rgba(20,12,28,0.35) 100%);
+}
+
+.vignette {
+  position: absolute; inset: 0;
+  pointer-events: none;
+  opacity: 0.7;
+  background: radial-gradient(ellipse at 50% 55%, transparent 40%, rgba(10,5,20,0.6) 90%);
+}
+
+.bloom {
+  position: absolute; inset: 0;
+  pointer-events: none;
+  mix-blend-mode: screen;
+  opacity: 0.35;
+  background: radial-gradient(circle at 50% 55%, rgba(255,225,190,0.5), transparent 55%);
+}
+
+.hero-header {
+  position: absolute; left: 0; right: 0; top: 0;
+  z-index: 40;
+  display: flex; align-items: center; justify-content: center;
+  padding: 1.5rem 2rem;
+}
+.mark { font-family: var(--font-display); font-size: 1.25rem; opacity: 0.9; }
+
+.flowers-left, .flowers-right {
+  position: absolute; bottom: -2.5rem;
+  z-index: 30; pointer-events: none;
+  height: 115%; width: 60%;
+  object-fit: contain; object-position: bottom;
+}
+.flowers-left  { left: -2.5rem; }
+.flowers-right { right: -2.5rem; }
+
+.petal {
+  position: absolute;
+  z-index: 20;
+  pointer-events: none;
+  display: block;
+  border-radius: 9999px;
+  filter: blur(0.5px);
+}
+
+/* ===== Gallery ===== */
+.gallery-stage {
+  position: absolute; inset: 0;
+  z-index: 40;
+  display: flex; align-items: center; justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.gallery-grid {
+  display: grid;
+  height: 82vh;
+  width: 92vw;
+  max-width: 1400px;
+  gap: 0.5rem;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-rows: repeat(8, minmax(0, 1fr));
+  grid-auto-rows: minmax(0, 1fr);
+}
+
+.gallery-tile {
+  position: relative;
+  margin: 0;
+  overflow: hidden;
+  border-radius: 0.75rem;
+  opacity: 0;
+  pointer-events: auto;
+  box-shadow:
+    0 30px 60px -28px rgba(0,0,0,0.65),
+    0 0 0 1px rgba(255,245,225,0.12),
+    inset 0 1px 0 rgba(255,255,255,0.18);
+}
+.gallery-tile img {
+  display: block;
+  height: 100%; width: 100%;
+  object-fit: cover;
+  transition: transform 1.4s ease-out;
+}
+.gallery-tile:hover img { transform: scale(1.05); }
+
+.tile-overlay {
+  position: absolute; inset: 0;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.5s;
+  background: linear-gradient(180deg, transparent 55%, rgba(10,5,20,0.5) 100%);
+}
+.gallery-tile:hover .tile-overlay { opacity: 1; }
+
+/* Mobile spans (3 cols x 8 rows) */
+.t-a { grid-column: span 1; grid-row: span 2; }
+.t-b { grid-column: span 2; grid-row: span 2; }
+.t-c { grid-column: span 1; grid-row: span 1; }
+.t-d { grid-column: span 1; grid-row: span 2; }
+.t-e { grid-column: span 2; grid-row: span 1; }
+.t-f { grid-column: span 2; grid-row: span 2; }
+.t-g { grid-column: span 2; grid-row: span 1; }
+.t-h { grid-column: span 1; grid-row: span 1; }
+.t-i { grid-column: span 1; grid-row: span 1; }
+
+/* Desktop spans (12 cols x 6 rows) */
+@media (min-width: 768px) {
+  .gallery-grid {
+    height: 88vh;
+    gap: 1.25rem;
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    grid-template-rows: repeat(6, minmax(0, 1fr));
+  }
+  .t-a { grid-column: span 3; grid-row: span 4; }
+  .t-b { grid-column: span 5; grid-row: span 3; }
+  .t-c { grid-column: span 2; grid-row: span 2; }
+  .t-d { grid-column: span 2; grid-row: span 3; }
+  .t-e { grid-column: span 3; grid-row: span 2; }
+  .t-f { grid-column: span 4; grid-row: span 3; }
+  .t-g { grid-column: span 3; grid-row: span 2; }
+  .t-h { grid-column: span 3; grid-row: span 2; }
+  .t-i { grid-column: span 2; grid-row: span 2; }
+}
