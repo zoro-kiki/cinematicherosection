@@ -1,7 +1,5 @@
 # Cinematic Hero (Standalone React)
 
-Plain React + Vite version of the cinematic hero. No Tailwind, no TanStack —
-just `.html`, `.jsx`, and `.css`.
 
 ## Run
 
@@ -27,4 +25,3 @@ npm run preview
 - `src/CinematicHero.jsx` — Hero with GSAP scroll zoom + bento gallery
 - `src/styles.css` — All styles (responsive grid included)
 - `src/assets/` — Background + flower foreground images
-"# cinematicherosection" 
